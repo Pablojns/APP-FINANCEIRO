@@ -86,3 +86,4 @@ export async function GET() {
 |------|---------|
 | Initial | Template created with base setup |
 | 2026-02-23 | Full financial app built: Dashboard, Transactions, Goals, Cards, Reports |
+| 2026-02-23 | Auth screens added: Login, Register (with password strength), Forgot Password (2-step), landing page with demo access |
