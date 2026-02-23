@@ -83,6 +83,7 @@ export default function Home() {
         onTabChange={setActiveTab}
         isOpen={sidebarOpen}
         onToggle={() => setSidebarOpen((o) => !o)}
+        onLogout={() => setIsLoggedIn(false)}
       />
 
       {/* Main content */}

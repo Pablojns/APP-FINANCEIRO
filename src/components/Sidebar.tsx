@@ -9,6 +9,7 @@ import {
   TrendingUp,
   Menu,
   X,
+  LogOut,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -16,6 +17,7 @@ interface SidebarProps {
   onTabChange: (tab: string) => void;
   isOpen: boolean;
   onToggle: () => void;
+  onLogout: () => void;
 }
 
 const navItems = [
@@ -26,7 +28,7 @@ const navItems = [
   { id: "reports", label: "Relatórios", icon: BarChart3 },
 ];
 
-export default function Sidebar({ activeTab, onTabChange, isOpen, onToggle }: SidebarProps) {
+export default function Sidebar({ activeTab, onTabChange, isOpen, onToggle, onLogout }: SidebarProps) {
   return (
     <>
       {/* Mobile overlay */}
@@ -154,11 +156,38 @@ export default function Sidebar({ activeTab, onTabChange, isOpen, onToggle }: Si
         {/* Footer */}
         <div
           style={{
-            padding: "16px 20px",
+            padding: "12px 12px 16px",
             borderTop: "1px solid #334155",
             minWidth: "240px",
           }}
         >
+          <button
+            onClick={onLogout}
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              padding: "12px 16px",
+              borderRadius: "10px",
+              border: "none",
+              cursor: "pointer",
+              background: "transparent",
+              color: "#ef4444",
+              marginBottom: "10px",
+              whiteSpace: "nowrap",
+              transition: "all 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.background = "rgba(239,68,68,0.1)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+            }}
+          >
+            <LogOut size={20} />
+            <span style={{ fontWeight: 500, fontSize: "14px" }}>Sair</span>
+          </button>
           <div style={{ fontSize: "11px", color: "#475569", textAlign: "center" }}>
             v1.0.0 • FinanceApp
           </div>
