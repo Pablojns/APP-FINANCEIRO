@@ -2,7 +2,7 @@
 
 ## Current State
 
-**Template Status**: ✅ Ready for development
+**Template Status**: ✅ Financial app with auth + logout
 
 The template is a clean Next.js 16 starter with TypeScript and Tailwind CSS 4. It's ready for AI-assisted expansion to build any type of application.
 
@@ -87,3 +87,4 @@ export async function GET() {
 | Initial | Template created with base setup |
 | 2026-02-23 | Full financial app built: Dashboard, Transactions, Goals, Cards, Reports |
 | 2026-02-23 | Auth screens added: Login, Register (with password strength), Forgot Password (2-step), landing page with demo access |
+| 2026-02-23 | Logout button added to Sidebar footer (red "Sair" button with LogOut icon, returns to landing page) |
