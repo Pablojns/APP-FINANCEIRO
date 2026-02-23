@@ -10,6 +10,7 @@ import {
   Menu,
   X,
   LogOut,
+  Bot,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -26,6 +27,7 @@ const navItems = [
   { id: "cards", label: "Cartões", icon: CreditCard },
   { id: "goals", label: "Metas", icon: Target },
   { id: "reports", label: "Relatórios", icon: BarChart3 },
+  { id: "ai", label: "IA Financeira", icon: Bot },
 ];
 
 export default function Sidebar({ activeTab, onTabChange, isOpen, onToggle, onLogout }: SidebarProps) {

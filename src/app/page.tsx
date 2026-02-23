@@ -8,6 +8,7 @@ import Transactions from "@/components/Transactions";
 import Goals from "@/components/Goals";
 import Cards from "@/components/Cards";
 import Reports from "@/components/Reports";
+import AIAssistant from "@/components/AIAssistant";
 import { AppData } from "@/lib/types";
 import { loadData } from "@/lib/store";
 
@@ -102,6 +103,7 @@ export default function Home() {
         {activeTab === "goals" && <Goals data={data} onDataChange={setData} />}
         {activeTab === "cards" && <Cards data={data} onDataChange={setData} />}
         {activeTab === "reports" && <Reports data={data} />}
+        {activeTab === "ai" && <AIAssistant data={data} />}
       </main>
     </div>
   );
