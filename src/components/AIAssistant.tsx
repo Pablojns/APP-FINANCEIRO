@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Bot, Send, Sparkles, TrendingDown, TrendingUp, Target, Lightbulb, RefreshCw } from "lucide-react";
 import { AppData } from "@/lib/types";
 

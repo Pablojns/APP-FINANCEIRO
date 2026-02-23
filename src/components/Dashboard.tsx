@@ -25,15 +25,19 @@ import {
 } from "lucide-react";
 import { AppData } from "@/lib/types";
 import { formatCurrency, categoryLabel, categoryColor, getMonthName } from "@/lib/utils";
+import AIInsightsPanel from "@/components/AIInsightsPanel";
+import { generateInsights } from "@/lib/aiInsights";
 
 interface DashboardProps {
   data: AppData;
+  onTabChange?: (tab: string) => void;
 }
 
 type Period = "monthly" | "quarterly" | "annual";
 
-export default function Dashboard({ data }: DashboardProps) {
+export default function Dashboard({ data, onTabChange }: DashboardProps) {
   const [period, setPeriod] = useState<Period>("monthly");
+  const aiInsights = useMemo(() => generateInsights(data), [data]);
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -200,6 +204,9 @@ export default function Dashboard({ data }: DashboardProps) {
           Visão geral das suas finanças
         </p>
       </div>
+
+      {/* AI Insights Panel */}
+      <AIInsightsPanel insights={aiInsights} onActionClick={onTabChange} />
 
       {/* Summary Cards */}
       <div

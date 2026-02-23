@@ -96,11 +96,11 @@ export default function Home() {
           paddingTop: "60px",
         }}
       >
-        {activeTab === "dashboard" && <Dashboard data={data} />}
+        {activeTab === "dashboard" && <Dashboard data={data} onTabChange={setActiveTab} />}
         {activeTab === "transactions" && (
-          <Transactions data={data} onDataChange={setData} />
+          <Transactions data={data} onDataChange={setData} onTabChange={setActiveTab} />
         )}
-        {activeTab === "goals" && <Goals data={data} onDataChange={setData} />}
+        {activeTab === "goals" && <Goals data={data} onDataChange={setData} onTabChange={setActiveTab} />}
         {activeTab === "cards" && <Cards data={data} onDataChange={setData} />}
         {activeTab === "reports" && <Reports data={data} />}
         {activeTab === "ai" && <AIAssistant data={data} />}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   Plus,
   Pencil,
@@ -15,10 +15,13 @@ import {
 import { AppData, Goal } from "@/lib/types";
 import { addGoal, updateGoal, deleteGoal } from "@/lib/store";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import AIInsightsPanel from "@/components/AIInsightsPanel";
+import { getGoalInsights } from "@/lib/aiInsights";
 
 interface GoalsProps {
   data: AppData;
   onDataChange: (data: AppData) => void;
+  onTabChange?: (tab: string) => void;
 }
 
 interface FormState {
@@ -50,13 +53,14 @@ const colorOptions = [
   "#f97316",
 ];
 
-export default function Goals({ data, onDataChange }: GoalsProps) {
+export default function Goals({ data, onDataChange, onTabChange }: GoalsProps) {
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(emptyForm);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [addingFunds, setAddingFunds] = useState<string | null>(null);
   const [fundAmount, setFundAmount] = useState("");
+  const aiInsights = useMemo(() => getGoalInsights(data), [data]);
 
   function openAdd() {
     setForm(emptyForm);
@@ -195,6 +199,9 @@ export default function Goals({ data, onDataChange }: GoalsProps) {
           Nova Meta
         </button>
       </div>
+
+      {/* AI Insights */}
+      <AIInsightsPanel insights={aiInsights} onActionClick={onTabChange} compact />
 
       {/* Goals grid */}
       {data.goals.length === 0 ? (

@@ -18,10 +18,13 @@ import {
   deleteTransaction,
 } from "@/lib/store";
 import { formatCurrency, formatDate, categoryLabel } from "@/lib/utils";
+import AIInsightsPanel from "@/components/AIInsightsPanel";
+import { getTransactionInsights } from "@/lib/aiInsights";
 
 interface TransactionsProps {
   data: AppData;
   onDataChange: (data: AppData) => void;
+  onTabChange?: (tab: string) => void;
 }
 
 const incomeCategories: TransactionCategory[] = [
@@ -59,7 +62,7 @@ const emptyForm: FormState = {
   date: new Date().toISOString().split("T")[0],
 };
 
-export default function Transactions({ data, onDataChange }: TransactionsProps) {
+export default function Transactions({ data, onDataChange, onTabChange }: TransactionsProps) {
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(emptyForm);
@@ -90,6 +93,8 @@ export default function Transactions({ data, onDataChange }: TransactionsProps) 
     const expense = filtered.filter((t) => t.type === "expense").reduce((s, t) => s + t.amount, 0);
     return { income, expense, balance: income - expense };
   }, [filtered]);
+
+  const aiInsights = useMemo(() => getTransactionInsights(data), [data]);
 
   function openAdd() {
     setForm(emptyForm);
@@ -191,6 +196,9 @@ export default function Transactions({ data, onDataChange }: TransactionsProps) 
           Novo Lançamento
         </button>
       </div>
+
+      {/* AI Insights */}
+      <AIInsightsPanel insights={aiInsights} onActionClick={onTabChange} compact />
 
       {/* Summary */}
       <div
