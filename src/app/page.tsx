@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Sidebar from "@/components/Sidebar";
 import Dashboard from "@/components/Dashboard";
 import Transactions from "@/components/Transactions";
@@ -42,12 +41,12 @@ export default function Home() {
           </p>
 
           <div style={landingStyles.btnGroup}>
-            <Link href="/register" style={landingStyles.btnPrimary}>
+            <a href="/register" style={landingStyles.btnPrimary}>
               Criar conta grátis
-            </Link>
-            <Link href="/login" style={landingStyles.btnSecondary}>
+            </a>
+            <a href="/login" style={landingStyles.btnSecondary}>
               Já tenho conta
-            </Link>
+            </a>
           </div>
 
           {/* Quick demo access */}
